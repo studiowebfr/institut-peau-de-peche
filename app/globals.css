@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+:root {
+  --creme: #fbf8f3;
+  --ivoire: #f4ede3;
+  --champagne: #c9a96a;
+  --champagne-clair: #e0c89a;
+  --champagne-texte: #7a5f30;
+  --peche: #e9bca4;
+  --sauge: #8c9885;
+  --encre: #2b2420;
+  --taupe: #8a7d72;
+  --taupe-texte: #6b5f54;
+}
+
+@theme inline {
+  --color-creme: var(--creme);
+  --color-ivoire: var(--ivoire);
+  --color-champagne: var(--champagne);
+  --color-champagne-clair: var(--champagne-clair);
+  --color-champagne-texte: var(--champagne-texte);
+  --color-peche: var(--peche);
+  --color-sauge: var(--sauge);
+  --color-encre: var(--encre);
+  --color-taupe: var(--taupe);
+  --color-taupe-texte: var(--taupe-texte);
+
+  --font-display: var(--font-cormorant);
+  --font-sans: var(--font-hanken);
+}
+
+body {
+  background: var(--creme);
+  color: var(--encre);
+}
+
+@layer utilities {
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+  }
+
+  .chiffres-tabulaires {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .voile-photo {
+    background: linear-gradient(
+      to top,
+      rgba(43, 36, 32, 0.55) 0%,
+      rgba(43, 36, 32, 0.15) 45%,
+      rgba(43, 36, 32, 0) 70%
+    );
+  }
+}
+
+/* Focus visible cohérent avec la charte — champagne assombri, jamais le
+   contour bleu par défaut du navigateur qui jurerait avec la palette. */
+:focus-visible {
+  outline: 2px solid var(--champagne-texte);
+  outline-offset: 2px;
+}
+
+/* Filet de sécurité CSS pour la mise au point : même si le JS n'a pas
+   encore tourné, une préférence système de réduction de mouvement fige
+   l'image nette dès le premier rendu, sans flash de flou. */
+@media (prefers-reduced-motion: reduce) {
+  .mise-au-point-image {
+    filter: none !important;
+    transition: none !important;
+  }
+  .mise-au-point-voile {
+    opacity: 0 !important;
+    transition: none !important;
+  }
+}
